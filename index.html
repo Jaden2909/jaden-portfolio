@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaden R Paul | Portfolio</title>
+    <style>
+        :root { --accent: #00ff88; --bg: #0a0a0a; --card: #141414; --text: #ececec; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        /* Profile Section */
+        .profile-header { display: flex; align-items: center; gap: 25px; margin-bottom: 40px; }
+        .initial-icon { 
+            width: 80px; height: 80px; background: transparent; 
+            border: 2px solid var(--accent); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; font-weight: bold; color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        
+        header { border-bottom: 1px solid #222; padding-bottom: 40px; }
+        h1 { font-size: 2.8rem; margin: 0; color: #fff; letter-spacing: -1px; }
+        h1 span { color: var(--accent); }
+        .tagline { color: var(--accent); font-size: 1rem; margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .bio { max-width: 600px; color: #aaa; margin-top: 20px; font-size: 1.05rem; }
+
+        .contact-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
+        .contact-links a { color: #fff; text-decoration: none; font-size: 0.85rem; border: 1px solid #333; padding: 6px 14px; border-radius: 4px; transition: 0.3s; }
+        .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+        .section-title { font-size: 1.1rem; margin: 50px 0 25px; color: #444; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        
+        /* Project Cards */
+        .card { background: var(--card); padding: 25px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .card h3 { margin: 0 0 10px 0; color: #fff; font-size: 1.1rem; }
+        .card p { color: #777; font-size: 0.85rem; margin-bottom: 15px; flex-grow: 1; }
+        
+        .btn { padding: 8px 16px; background: var(--accent); color: #000; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.85rem; display: inline-block; align-self: flex-start; }
+        .status-label { font-size: 0.75rem; color: #444; font-weight: bold; text-transform: uppercase; }
+
+        footer { margin-top: 80px; text-align: center; color: #333; font-size: 0.75rem; padding-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-header">
+                <div class="initial-icon">J</div>
+                <div>
+                    <h1>JADEN R <span>PAUL</span></h1>
+                    <p class="tagline">BSc AIML Student & Fullstack Explorer</p>
+                </div>
+            </div>
+
+            <p class="bio">
+                I’m a developer who believes in clean code and even better communication. Currently diving deep into AI and Machine Learning, I enjoy solving complex problems while maintaining a positive, collaborative mindset. Whether it's a backend logic puzzle or a frontend design, I bring energy and a focus on growth to every project.
+            </p>
+            
+            <div class="contact-links">
+                <a href="tel:9353744037">📞 9353744037</a>
+                <a href="mailto:jadenrpaul07@gmail.com">✉️ Email</a>
+                <a href="https://www.linkedin.com/in/jadiee" target="_blank">🔗 LinkedIn</a>
+            </div>
+        </header>
+
+        <div class="section-title">Fullstack Application</div>
+        <div class="grid">
+            <div class="card">
+                <h3>MySQL Quiz Engine</h3>
+                <p>
+                    A dynamic system retrieving randomized questions from a backend database with real-time logic. <br><br>
+                    Engineered using Node.js and Express to bridge the gap between structured SQL data and an interactive, responsive user interface.
+                </p>
+                <a href="/quiz" class="btn">View Project</a>
+            </div>
+        </div>
+
+        <div class="section-title">Frontend Showcase</div>
+        <div class="grid">
+            <div class="card">
+                <h3>UI Designs</h3>
+                <p>Curated frontend concepts and interface designs not yet uploaded to the local server.</p>
+                <span class="status-label">Not Yet Uploaded</span>
+            </div>
+            <div class="card">
+                <h3>React Labs</h3>
+                <p>Experimental React components and state management demos awaiting deployment.</p>
+                <span class="status-label">Not Yet Uploaded</span>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Jaden R Paul | Built with Node.js & MySQL
+        </footer>
+    </div>
+</body>
+</html>

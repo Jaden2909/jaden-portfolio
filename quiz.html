@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Challenge | Jaden R Paul</title>
+    <style>
+        :root { --accent: #00ff88; --bg: #0a0a0a; --card: #141414; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .quiz-card { background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid var(--accent); width: 450px; text-align: center; }
+        .category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .cat-btn { padding: 20px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 10px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .cat-btn:hover { border-color: var(--accent); background: #222; }
+        #quiz-engine { display: none; }
+        .options { display: grid; gap: 10px; margin: 20px 0; }
+        button.ans-btn { padding: 12px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 5px; cursor: pointer; }
+        button.ans-btn:hover { background: var(--accent); color: black; }
+        .back-btn { margin-top: 20px; color: #555; text-decoration: none; font-size: 0.8rem; display: block; cursor: pointer; }
+        .back-btn:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-card">
+        <div id="category-screen">
+            <h2 style="color: var(--accent)">Select Category</h2>
+            <div class="category-grid">
+                <button class="cat-btn" onclick="startQuiz('IT')">IT Technical</button>
+                <button class="cat-btn" onclick="startQuiz('GK')">General Knowledge</button>
+                <button class="cat-btn" onclick="startQuiz('Sports')">Sports</button>
+                <button class="cat-btn" onclick="startQuiz('Music')">Music</button>
+            </div>
+            <a href="/" class="back-btn">← Back to Portfolio</a>
+        </div>
+
+        <div id="quiz-engine">
+            <div style="font-size: 0.8rem; color: #888" id="progress">1/3</div>
+            <h3 id="question-text">Loading...</h3>
+            <div class="options">
+                <button class="ans-btn" onclick="handleAnswer('A')" id="btnA"></button>
+                <button class="ans-btn" onclick="handleAnswer('B')" id="btnB"></button>
+            </div>
+            <p id="result-text" style="height: 20px; font-weight: bold;"></p>
+            <span class="back-btn" onclick="resetToCategories()">← Quit to Categories</span>
+        </div>
+    </div>
+
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let score = 0;
+
+        function startQuiz(category) {
+            fetch(`/api/questions?category=${category}`)
+                .then(res => res.json())
+                .then(data => {
+                    questions = data;
+                    currentIndex = 0;
+                    score = 0;
+                    document.getElementById('category-screen').style.display = 'none';
+                    document.getElementById('quiz-engine').style.display = 'block';
+                    showQuestion();
+                });
+        }
+
+        function showQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById('progress').innerText = `Question ${currentIndex + 1}/3`;
+            document.getElementById('question-text').innerText = q.question_text;
+            document.getElementById('btnA').innerText = q.option_a;
+            document.getElementById('btnB').innerText = q.option_b;
+            document.getElementById('result-text').innerText = "";
+        }
+
+        function handleAnswer(choice) {
+            const correct = questions[currentIndex].correct_option;
+            const resEl = document.getElementById('result-text');
+            if(choice === correct) {
+                resEl.innerText = "CORRECT!";
+                resEl.style.color = "#00ff88";
+                score++;
+            } else {
+                resEl.innerText = "WRONG!";
+                resEl.style.color = "#ff4444";
+            }
+
+            setTimeout(() => {
+                currentIndex++;
+                if(currentIndex < 3) {
+                    showQuestion();
+                } else {
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-engine').innerHTML = `
+                <h2 style="color: var(--accent)">Quiz Finished!</h2>
+                <p>Final Score: ${score}/3</p>
+                <button class="cat-btn" onclick="location.reload()" style="width:100%">Try Again</button>
+                <a href="/" class="back-btn">← Back to Portfolio</a>
+            `;
+        }
+
+        function resetToCategories() {
+            location.reload(); // Simplest way to reset the state
+        }
+    </script>
+</body>
+</html>
