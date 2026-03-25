@@ -11,12 +11,19 @@
         
         /* Profile Section */
         .profile-header { display: flex; align-items: center; gap: 25px; margin-bottom: 40px; }
+        
+        /* UPDATED: Profile Circle for Image */
         .initial-icon { 
-            width: 80px; height: 80px; background: transparent; 
+            width: 80px; height: 80px; background: #222; 
             border: 2px solid var(--accent); border-radius: 50%; 
             display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; font-weight: bold; color: var(--accent);
+            overflow: hidden; /* Clips the image to the circle */
             box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        .initial-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Keeps aspect ratio */
         }
         
         header { border-bottom: 1px solid #222; padding-bottom: 40px; }
@@ -32,6 +39,20 @@
 
         .section-title { font-size: 1.1rem; margin: 50px 0 25px; color: #444; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
         
+        /* NEW: Skills Component Styling */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag { 
+            background: #1a1a1a; 
+            border: 1px solid #333; 
+            color: var(--text); 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            transition: 0.3s;
+        }
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent); background: #111; }
+        .skill-tag.soft { border-style: dashed; } /* Subtle difference for soft skills */
+
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         
         /* Project Cards */
@@ -50,7 +71,9 @@
     <div class="container">
         <header>
             <div class="profile-header">
-                <div class="initial-icon">J</div>
+                <div class="initial-icon">
+                    <img src="jaden.jpeg" alt="Jaden R Paul">
+                </div>
                 <div>
                     <h1>JADEN R <span>PAUL</span></h1>
                     <p class="tagline">BSc AIML Student & Fullstack Explorer</p>
@@ -67,6 +90,21 @@
                 <a href="https://www.linkedin.com/in/jadiee" target="_blank">🔗 LinkedIn</a>
             </div>
         </header>
+
+        <div class="section-title">Technical & Soft Skills</div>
+        <div class="skills-container">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag soft">Debugging</span>
+            <span class="skill-tag soft">Critical Thinking</span>
+        </div>
 
         <div class="section-title">Fullstack Application</div>
         <div class="grid">
